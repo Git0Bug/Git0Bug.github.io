@@ -4,7 +4,26 @@
   
   
   <entry>
-    <title>内核模块常用操作命令</title>
+    <title>ubuntu avahi</title>
+    <link href="/2023/07/22/linux-avahi/"/>
+    <url>/2023/07/22/linux-avahi/</url>
+    
+    <content type="html"><![CDATA[<h2 id="avahi-publish-service"><a href="#avahi-publish-service" class="headerlink" title="avahi-publish-service"></a>avahi-publish-service</h2><p>发布服务</p><p>avahi-publish-service SERVICE-NAME _APPLICATIONPROTOCOL._TRANPOSRT-PROTOCOL PORT “DESCRIPTION” –sub SUBPROTOCOL</p><ul><li><p><code>SERVICE-NAME</code>：服务名称</p></li><li><p><code>_APPLICATIONPROTOCOL._TRANPOSRT-PROTOCOL</code>：应用协议+传输协议</p></li><li><p><code>PORT</code>：使用端口号</p></li><li><p><code>&quot;DESCRIPTION&quot;</code>：服务描述</p></li><li><p><code>SUBPROTOCOL</code>：订阅协议</p></li></ul><p>eg：avahi-publish-service light _coap._udp 5683 “&#x2F;mylight” –sub _floor1._sub._coap._udp</p><h2 id="avahi-browse"><a href="#avahi-browse" class="headerlink" title="avahi-browse"></a>avahi-browse</h2><p>发现服务</p><p>avahi-browse [options] service-type</p><ul><li><code>[options]</code>：选项字节<ul><li><code>-a</code>：发现并列出所有服务类型</li><li><code>-r</code>：自动解析服务</li><li><code>-p</code>：以可解析形式显式输出</li><li><code>-t</code>：完成一轮发现后立即终止。默认情况下，会保留<code>avahi-browse</code>，并不断寻找匹配的服务。</li></ul></li><li><code>service-type</code>：服务类型</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ubuntu内核模块常用操作命令</title>
     <link href="/2023/07/22/linux-mod/"/>
     <url>/2023/07/22/linux-mod/</url>
     
@@ -23,7 +42,7 @@
   
   
   <entry>
-    <title>检测声卡驱动</title>
+    <title>ubuntu检测声卡驱动</title>
     <link href="/2023/07/22/linux-alsa/"/>
     <url>/2023/07/22/linux-alsa/</url>
     
@@ -44,7 +63,7 @@
   
   
   <entry>
-    <title>网卡限速和网卡测速</title>
+    <title>ubuntu网卡限速和网卡测速</title>
     <link href="/2023/07/22/linux-wondershaper/"/>
     <url>/2023/07/22/linux-wondershaper/</url>
     
@@ -113,7 +132,7 @@
       
       <tag>USB</tag>
       
-      <tag>windows</tag>
+      <tag>Windows</tag>
       
       <tag>BIOS</tag>
       
@@ -124,7 +143,7 @@
   
   
   <entry>
-    <title>windows下的cmd命令</title>
+    <title>Windows下的cmd命令</title>
     <link href="/2023/07/22/win-cmd-operate/"/>
     <url>/2023/07/22/win-cmd-operate/</url>
     
@@ -134,7 +153,7 @@
     
     <tags>
       
-      <tag>windows</tag>
+      <tag>Windows</tag>
       
       <tag>cmd</tag>
       
