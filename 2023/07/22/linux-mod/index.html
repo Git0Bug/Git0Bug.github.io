@@ -16,15 +16,15 @@
   <meta name="author" content="Luna">
   <meta name="keywords" content="">
   
-    <meta name="description" content="lsmod12#列出所有系统加载的内核模块，list modules#该命令的作用是读取&#x2F;proc&#x2F;modules并以格式正确的列表显示文件内容  insmod1挂载驱动：insmod test-tft.ko  rmmod1取消挂载驱动：rmmod test-tft  dmesg查看内核打印的日志 uname12-r #查找正在运行的内核的发行版本-a">
+    <meta name="description" content="lsmod12#列出所有系统加载的内核模块，list modules#该命令的作用是读取&#x2F;proc&#x2F;modules并以格式正确的列表显示文件内容  insmod1挂载驱动：insmod test.ko  rmmod1取消挂载驱动：rmmod test  modinfo1查看基本信息：modinfo test.ko  dmesg查看内核打印的日志 uname12-r #查找正在运行的内核的发行版本-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu内核模块常用操作命令">
+<meta property="og:title" content="Linux内核模块管理">
 <meta property="og:url" content="https://git0bug.github.io/2023/07/22/linux-mod/index.html">
 <meta property="og:site_name" content="Luna&#39;s blog">
-<meta property="og:description" content="lsmod12#列出所有系统加载的内核模块，list modules#该命令的作用是读取&#x2F;proc&#x2F;modules并以格式正确的列表显示文件内容  insmod1挂载驱动：insmod test-tft.ko  rmmod1取消挂载驱动：rmmod test-tft  dmesg查看内核打印的日志 uname12-r #查找正在运行的内核的发行版本-a">
+<meta property="og:description" content="lsmod12#列出所有系统加载的内核模块，list modules#该命令的作用是读取&#x2F;proc&#x2F;modules并以格式正确的列表显示文件内容  insmod1挂载驱动：insmod test.ko  rmmod1取消挂载驱动：rmmod test  modinfo1查看基本信息：modinfo test.ko  dmesg查看内核打印的日志 uname12-r #查找正在运行的内核的发行版本-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-22T12:01:29.000Z">
-<meta property="article:modified_time" content="2023-07-22T12:46:32.140Z">
+<meta property="article:modified_time" content="2023-07-22T15:52:36.082Z">
 <meta property="article:author" content="Luna">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ubuntu内核模块常用操作命令 - Luna&#39;s blog</title>
+  <title>Linux内核模块管理 - Luna&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ubuntu内核模块常用操作命令"></span>
+            <span id="subtitle" data-typed-text="Linux内核模块管理"></span>
           
         </div>
 
@@ -198,7 +198,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          166 words
+          187 words
         
       </span>
     
@@ -246,16 +246,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ubuntu内核模块常用操作命令</h1>
+            <h1 id="seo-header">Linux内核模块管理</h1>
             
             
               <div class="markdown-body">
                 
                 <h3 id="lsmod"><a href="#lsmod" class="headerlink" title="lsmod"></a>lsmod</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#列出所有系统加载的内核模块，list modules</span><br><span class="hljs-comment">#该命令的作用是读取/proc/modules并以格式正确的列表显示文件内容</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="insmod"><a href="#insmod" class="headerlink" title="insmod"></a>insmod</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">挂载驱动：insmod <span class="hljs-keyword">test</span>-tft.ko<br></code></pre></td></tr></table></figure>
+<h3 id="insmod"><a href="#insmod" class="headerlink" title="insmod"></a>insmod</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">挂载驱动：insmod <span class="hljs-keyword">test</span>.ko<br></code></pre></td></tr></table></figure>
 
-<h3 id="rmmod"><a href="#rmmod" class="headerlink" title="rmmod"></a>rmmod</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">取消挂载驱动：rmmod <span class="hljs-keyword">test</span>-tft<br></code></pre></td></tr></table></figure>
+<h3 id="rmmod"><a href="#rmmod" class="headerlink" title="rmmod"></a>rmmod</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">取消挂载驱动：rmmod <span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="modinfo"><a href="#modinfo" class="headerlink" title="modinfo"></a>modinfo</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">查看基本信息：modinfo <span class="hljs-keyword">test</span>.ko<br></code></pre></td></tr></table></figure>
 
 <h3 id="dmesg"><a href="#dmesg" class="headerlink" title="dmesg"></a>dmesg</h3><p>查看内核打印的日志</p>
 <h3 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">-r <span class="hljs-comment">#查找正在运行的内核的发行版本</span><br>-a <br></code></pre></td></tr></table></figure>
@@ -284,7 +286,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ubuntu内核模块常用操作命令</div>
+      <div>Linux内核模块管理</div>
       <div>https://git0bug.github.io/2023/07/22/linux-mod/</div>
     </div>
     <div class="license-meta">
@@ -339,8 +341,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/22/linux-alsa/" title="ubuntu检测声卡驱动">
-                        <span class="hidden-mobile">ubuntu检测声卡驱动</span>
+                      <a href="/2023/07/22/linux-alsa/" title="ubuntu 检测声卡驱动">
+                        <span class="hidden-mobile">ubuntu 检测声卡驱动</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
