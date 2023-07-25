@@ -16,24 +16,28 @@
   <meta name="author" content="Luna">
   <meta name="keywords" content="">
   
-    <meta name="description" content="博客质量参差不齐，浏览器标签开了六七个，最后下载了这个得以解决，记录一下：https:&#x2F;&#x2F;www.microsoft.com&#x2F;zh-cn&#x2F;download&#x2F;confirmation.aspx?id&#x3D;40784">
+    <meta name="description" content="以Material样式加载动画为例：.pro增加1QT +&#x3D; quickcontrols2  main.cpp增加1234#include &lt;QQuickStyle&gt;QQuickStyle::setStyle(&quot;Material&quot;);  main.qml123456789101112131415161718192021222324252627282930313233">
 <meta property="og:type" content="article">
-<meta property="og:title" content="由于找不到MSVCR120.dll,无法继续执行代码">
-<meta property="og:url" content="https://git0bug.github.io/2023/07/24/win-msvcr120/index.html">
+<meta property="og:title" content="QML预设样式">
+<meta property="og:url" content="https://git0bug.github.io/2023/07/25/qtquick-style/index.html">
 <meta property="og:site_name" content="Luna&#39;s blog">
-<meta property="og:description" content="博客质量参差不齐，浏览器标签开了六七个，最后下载了这个得以解决，记录一下：https:&#x2F;&#x2F;www.microsoft.com&#x2F;zh-cn&#x2F;download&#x2F;confirmation.aspx?id&#x3D;40784">
+<meta property="og:description" content="以Material样式加载动画为例：.pro增加1QT +&#x3D; quickcontrols2  main.cpp增加1234#include &lt;QQuickStyle&gt;QQuickStyle::setStyle(&quot;Material&quot;);  main.qml123456789101112131415161718192021222324252627282930313233">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-24T15:13:29.000Z">
-<meta property="article:modified_time" content="2023-07-24T15:19:07.490Z">
+<meta property="og:image" content="https://git0bug.github.io/img/qtquickstyle.png">
+<meta property="article:published_time" content="2023-07-25T14:34:29.000Z">
+<meta property="article:modified_time" content="2023-07-25T15:05:07.957Z">
 <meta property="article:author" content="Luna">
-<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="QT">
+<meta property="article:tag" content="QtQuick">
+<meta property="article:tag" content="QML">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://git0bug.github.io/img/qtquickstyle.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>由于找不到MSVCR120.dll,无法继续执行代码 - Luna&#39;s blog</title>
+  <title>QML预设样式 - Luna&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -175,7 +179,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="由于找不到MSVCR120.dll,无法继续执行代码"></span>
+            <span id="subtitle" data-typed-text="QML预设样式"></span>
           
         </div>
 
@@ -186,8 +190,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-24 23:13" pubdate>
-          July 24, 2023 pm
+        <time datetime="2023-07-25 22:34" pubdate>
+          July 25, 2023 pm
         </time>
       </span>
     
@@ -198,7 +202,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          104 words
+          857 words
         
       </span>
     
@@ -209,7 +213,7 @@
         
         
         
-          1 mins
+          8 mins
         
       </span>
     
@@ -246,12 +250,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">由于找不到MSVCR120.dll,无法继续执行代码</h1>
+            <h1 id="seo-header">QML预设样式</h1>
             
             
               <div class="markdown-body">
                 
-                <p>博客质量参差不齐，浏览器标签开了六七个，最后下载了这个得以解决，记录一下：<br><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/download/confirmation.aspx?id=40784">https://www.microsoft.com/zh-cn/download/confirmation.aspx?id=40784</a></p>
+                <h2 id="以Material样式加载动画为例："><a href="#以Material样式加载动画为例：" class="headerlink" title="以Material样式加载动画为例："></a>以Material样式加载动画为例：</h2><h3 id="pro增加"><a href="#pro增加" class="headerlink" title=".pro增加"></a>.pro增加</h3><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">QT +</span>=<span class="hljs-string"> quickcontrols2</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="main-cpp增加"><a href="#main-cpp增加" class="headerlink" title="main.cpp增加"></a>main.cpp增加</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QQuickStyle&gt;</span></span><br><br>QQuickStyle::<span class="hljs-built_in">setStyle</span>(<span class="hljs-string">&quot;Material&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="main-qml"><a href="#main-qml" class="headerlink" title="main.qml"></a>main.qml</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">import</span> QtQuick <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> QtQuick.Window <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> QtQuick.Controls <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> QtQuick.Controls.Material <span class="hljs-number">2.15</span><br><br>Window &#123;<br>    width: <span class="hljs-number">640</span><br>    height: <span class="hljs-number">480</span><br>    visible: <span class="hljs-literal">true</span><br><br>    Row&#123;<br>        BusyIndicator &#123;<br>            running: <span class="hljs-literal">true</span><br>            Material.accent: <span class="hljs-string">&quot;#3BB8F7&quot;</span><br><br>        &#125;<br>        BusyIndicator &#123;<br>            running: <span class="hljs-literal">true</span><br>            Material.accent: <span class="hljs-string">&quot;#68C421&quot;</span><br><br>        &#125;<br>        BusyIndicator &#123;<br>            running: <span class="hljs-literal">true</span><br>            Material.accent: <span class="hljs-string">&quot;#FFB247&quot;</span><br><br>        &#125;<br>        BusyIndicator &#123;<br>            running: <span class="hljs-literal">true</span><br>            Material.accent: <span class="hljs-string">&quot;#FF4935&quot;</span><br><br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="效果图如下："><a href="#效果图如下：" class="headerlink" title="效果图如下："></a>效果图如下：</h2><p><img src="/img/qtquickstyle.png" srcset="/img/loading.gif" lazyload alt="效果图"></p>
+<h2 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h2><p><a target="_blank" rel="noopener" href="https://github.com/Git0Bug/QtQuickDemo/tree/main/style">https://github.com/Git0Bug/QtQuickDemo/tree/main/style</a></p>
+<h2 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h2><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtquickcontrols2-styles.html#using-styles-in-qt-quick-controls">https://doc.qt.io/qt-5/qtquickcontrols2-styles.html#using-styles-in-qt-quick-controls</a><br><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qtquickcontrols2-material.html">https://doc.qt.io/qt-5/qtquickcontrols2-material.html</a></p>
 
                 
               </div>
@@ -264,7 +276,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+        <a href="/tags/QT/" class="print-no-link">#QT</a>
+      
+        <a href="/tags/QtQuick/" class="print-no-link">#QtQuick</a>
+      
+        <a href="/tags/QML/" class="print-no-link">#QML</a>
       
     </div>
   
@@ -276,8 +292,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>由于找不到MSVCR120.dll,无法继续执行代码</div>
-      <div>https://git0bug.github.io/2023/07/24/win-msvcr120/</div>
+      <div>QML预设样式</div>
+      <div>https://git0bug.github.io/2023/07/25/qtquick-style/</div>
     </div>
     <div class="license-meta">
       
@@ -289,7 +305,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 24, 2023</div>
+          <div>July 25, 2023</div>
         </div>
       
       
@@ -321,9 +337,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/25/qtquick-style/" title="QML预设样式">
+                      <a href="/2023/07/25/qtquick-titlebar/" title="QML自定义窗口标题栏，支持最小化/最大化/关闭/移动">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">QML预设样式</span>
+                        <span class="hidden-mobile">QML自定义窗口标题栏，支持最小化/最大化/关闭/移动</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -331,8 +347,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/22/linux-avahi/" title="ubuntu avahi">
-                        <span class="hidden-mobile">ubuntu avahi</span>
+                      <a href="/2023/07/24/win-msvcr120/" title="由于找不到MSVCR120.dll,无法继续执行代码">
+                        <span class="hidden-mobile">由于找不到MSVCR120.dll,无法继续执行代码</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
