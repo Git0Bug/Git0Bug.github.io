@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/sun.png">
+  <link rel="icon" href="/img/sun.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luna">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 QML注册单例的两种方式1.1 qmldir1singleton GlobalCfg 1.0 GlobalConfig.qml 在GlobalConfig.qml同级目录下添加qmldir，然后再qml中显示引用 12345678910111213141516171819202122import QtQuick 2.15import QtQuick.Window 2.15import &amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QML注册单例的两种方式和c++注册单例给QML使用">
+<meta property="og:url" content="https://git0bug.github.io/2023/07/25/qtquick-singleton/index.html">
+<meta property="og:site_name" content="Luna&#39;s blog">
+<meta property="og:description" content="1 QML注册单例的两种方式1.1 qmldir1singleton GlobalCfg 1.0 GlobalConfig.qml 在GlobalConfig.qml同级目录下添加qmldir，然后再qml中显示引用 12345678910111213141516171819202122import QtQuick 2.15import QtQuick.Window 2.15import &amp;quo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-25T15:43:29.000Z">
+<meta property="article:modified_time" content="2023-07-25T16:01:30.221Z">
+<meta property="article:author" content="Luna">
+<meta property="article:tag" content="QT">
+<meta property="article:tag" content="QtQuick">
+<meta property="article:tag" content="QML">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>QML注册单例的两种方式和c++注册单例给QML使用 - Luna&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"git0bug.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Luna&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="QML注册单例的两种方式和c++注册单例给QML使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-25 23:43" pubdate>
+          July 25, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">QML注册单例的两种方式和c++注册单例给QML使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-QML注册单例的两种方式"><a href="#1-QML注册单例的两种方式" class="headerlink" title="1 QML注册单例的两种方式"></a>1 QML注册单例的两种方式</h2><h3 id="1-1-qmldir"><a href="#1-1-qmldir" class="headerlink" title="1.1 qmldir"></a>1.1 qmldir</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">singleton</span> GlobalCfg <span class="hljs-number">1</span>.<span class="hljs-number">0</span> GlobalConfig.qml<br></code></pre></td></tr></table></figure>
+<p>在GlobalConfig.qml同级目录下添加<strong>qmldir</strong>，然后再qml中<strong>显示引用</strong></p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs qml"><span class="hljs-keyword">import</span> QtQuick <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> QtQuick.Window <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;qrc:/public&quot;</span> <span class="hljs-comment">//显示引用</span><br><br><span class="hljs-title">Window</span> &#123;<br>    <span class="hljs-attribute">id:</span><span class="hljs-string"> root</span><br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">800</span><br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">480</span><br>    <span class="hljs-attribute">visible</span>: <span class="hljs-literal">true</span><br>    <br>    <span class="hljs-keyword">property</span><span class="hljs-string"> color accentColor</span>: GlobalCfg.accentColor<br><br>    <span class="hljs-attribute">Component.onCompleted</span>: &#123;<br>        display()<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">display</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;accentColor&quot;</span>,accentColor)   <br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+<h3 id="1-2-qmlRegisterSingletonType"><a href="#1-2-qmlRegisterSingletonType" class="headerlink" title="1.2 qmlRegisterSingletonType"></a>1.2 qmlRegisterSingletonType</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">qmlRegisterSingletonType</span>(QUrl(<span class="hljs-string">&quot;qrc:/public/GlobalConfig.qml&quot;</span>), <span class="hljs-string">&quot;Qt.Singleton&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;GlobalSingleton&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>在main.cpp中注册</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs qml"><span class="hljs-keyword">import</span> QtQuick <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> QtQuick.Window <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> Qt.Singleton <span class="hljs-number">1.0</span><br><br><span class="hljs-title">Window</span> &#123;<br>    <span class="hljs-attribute">id:</span><span class="hljs-string"> root</span><br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">800</span><br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">480</span><br>    <span class="hljs-attribute">visible</span>: <span class="hljs-literal">true</span><br><br>    <span class="hljs-keyword">property</span><span class="hljs-string"> color accentColor</span>: GlobalSingleton.accentColor<br><br>    <span class="hljs-attribute">Component.onCompleted</span>: &#123;<br>        display()<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">display</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;accentColor&quot;</span>,accentColor)   <br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="2-c-注册单例给QML使用"><a href="#2-c-注册单例给QML使用" class="headerlink" title="2 c++注册单例给QML使用"></a>2 c++注册单例给QML使用</h2><h3 id="pro"><a href="#pro" class="headerlink" title=".pro"></a>.pro</h3><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">QT +</span>=<span class="hljs-string"> quick core</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="CommandHandler-h"><a href="#CommandHandler-h" class="headerlink" title="CommandHandler.h"></a>CommandHandler.h</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> COMMANDHANDLER_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> COMMANDHANDLER_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QFile&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QDir&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QDebug&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QString&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QQmlEngine&gt;</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CommandHandler</span> : <span class="hljs-keyword">public</span> QObject<br>&#123;<br>    Q_OBJECT<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">CommandHandler</span>(QObject* parent = <span class="hljs-number">0</span>);<br>    ~<span class="hljs-built_in">CommandHandler</span>();<br><br><span class="hljs-comment">//* Singleton</span><br>        <span class="hljs-function"><span class="hljs-type">static</span> CommandHandler* <span class="hljs-title">getInstance</span><span class="hljs-params">(QQmlEngine *engine, QJSEngine *scriptEngine)</span></span><br><span class="hljs-function">        </span>&#123;<br>            <span class="hljs-type">static</span> CommandHandler *instance = <span class="hljs-literal">nullptr</span>;<br>            <span class="hljs-keyword">if</span>(!instance) instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">CommandHandler</span>();<br>            <span class="hljs-keyword">return</span>  instance;<br>        &#125;<br><br><br>    <span class="hljs-function">Q_INVOKABLE QString <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-type">const</span> QString&amp; str)</span></span>;<br>&#125;;<br><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">// COMMANDHANDLER_H</span></span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QGuiApplication&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QQmlApplicationEngine&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QQmlContext&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QQmlEngine&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;CommandHandler.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-meta">#<span class="hljs-keyword">if</span> QT_VERSION &lt; QT_VERSION_CHECK(6, 0, 0)</span><br>    QCoreApplication::<span class="hljs-built_in">setAttribute</span>(Qt::AA_EnableHighDpiScaling);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>    <span class="hljs-function">QGuiApplication <span class="hljs-title">app</span><span class="hljs-params">(argc, argv)</span></span>;<br>    QQmlApplicationEngine engine;<br><br>    <span class="hljs-built_in">qmlRegisterSingletonType</span>&lt;CommandHandler&gt;(<span class="hljs-string">&quot;CommandHandler&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;CommandHandler&quot;</span>, CommandHandler::getInstance);<br><br>    <span class="hljs-function"><span class="hljs-type">const</span> QUrl <span class="hljs-title">url</span><span class="hljs-params">(QStringLiteral(<span class="hljs-string">&quot;qrc:/main.qml&quot;</span>))</span></span>;<br><br>    QObject::<span class="hljs-built_in">connect</span>(&amp;engine, &amp;QQmlApplicationEngine::objectCreated,<br>                     &amp;app, [url](QObject *obj, <span class="hljs-type">const</span> QUrl &amp;objUrl) &#123;<br>        <span class="hljs-keyword">if</span> (!obj &amp;&amp; url == objUrl)<br>            QCoreApplication::<span class="hljs-built_in">exit</span>(<span class="hljs-number">-1</span>);<br>    &#125;, Qt::QueuedConnection);<br>    engine.<span class="hljs-built_in">load</span>(url);<br><br>    <span class="hljs-keyword">return</span> app.<span class="hljs-built_in">exec</span>();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="main-qml"><a href="#main-qml" class="headerlink" title="main.qml"></a>main.qml</h3><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs qml"><span class="hljs-keyword">import</span> QtQuick <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> QtQuick.Window <span class="hljs-number">2.15</span><br><span class="hljs-keyword">import</span> CommandHandler <span class="hljs-number">1.0</span> <span class="hljs-keyword">as</span> Cmd<br><br><span class="hljs-title">Window</span> &#123;<br>    <span class="hljs-attribute">id:</span><span class="hljs-string"> root</span><br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">800</span><br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">480</span><br>    <span class="hljs-attribute">visible</span>: <span class="hljs-literal">true</span><br><br>    <span class="hljs-attribute">Component.onCompleted</span>: &#123;<br>        display()<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">display</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Cmd &quot;</span>,Cmd.CommandHandler.test(<span class="hljs-string">&quot;hello luna&quot;</span>))<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/QT/" class="print-no-link">#QT</a>
+      
+        <a href="/tags/QtQuick/" class="print-no-link">#QtQuick</a>
+      
+        <a href="/tags/QML/" class="print-no-link">#QML</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>QML注册单例的两种方式和c++注册单例给QML使用</div>
+      <div>https://git0bug.github.io/2023/07/25/qtquick-singleton/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Luna</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 25, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/25/qtquick-titlebar/" title="QML自定义窗口标题栏，支持最小化/最大化/关闭/移动">
+                        <span class="hidden-mobile">QML自定义窗口标题栏，支持最小化/最大化/关闭/移动</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
