@@ -24,7 +24,7 @@
 <meta property="og:description" content="line in to line out, line in to line HP">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-22T11:53:29.000Z">
-<meta property="article:modified_time" content="2023-07-22T15:47:09.672Z">
+<meta property="article:modified_time" content="2023-08-01T21:04:21.923Z">
 <meta property="article:author" content="Luna">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="USB">
@@ -170,7 +170,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -199,7 +199,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          251 words
+          333 words
         
       </span>
     
@@ -210,7 +210,7 @@
         
         
         
-          3 mins
+          2 mins
         
       </span>
     
@@ -252,7 +252,16 @@
             
               <div class="markdown-body">
                 
-                <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">sudo</span> apt install alsa-utils<br><span class="hljs-attribute">sudo</span> apt install alsa-base<br><br><span class="hljs-comment">#边录边播</span><br>  <span class="hljs-attribute">arecord</span>  --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span> --format S16_LE --rate <span class="hljs-number">48000</span> -c2 | aplay --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span><br><span class="hljs-comment">#只录音</span><br>  <span class="hljs-attribute">arecord</span>  --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span> -d <span class="hljs-number">10</span> --format S32_LE --rate <span class="hljs-number">44100</span> -c2 -t wav test.wav<br><span class="hljs-comment">#只播放</span><br>  <span class="hljs-attribute">aplay</span> --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span> test.wav<br></code></pre></td></tr></table></figure>
+                <p>安装：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> alsa-utils<br>sudo apt <span class="hljs-keyword">install</span> alsa-base<br></code></pre></td></tr></table></figure>
+<p>常用指令：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment">#边录边播</span><br>  <span class="hljs-attribute">arecord</span>  --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span> --format S16_LE --rate <span class="hljs-number">48000</span> -c2 | aplay --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span><br><span class="hljs-comment">#只录音</span><br>  <span class="hljs-attribute">arecord</span>  --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span> -d <span class="hljs-number">10</span> --format S32_LE --rate <span class="hljs-number">44100</span> -c2 -t wav test.wav<br><span class="hljs-comment">#只播放</span><br>  <span class="hljs-attribute">aplay</span> --device=plughw:<span class="hljs-number">0</span>,<span class="hljs-number">0</span> test.wav<br></code></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">--device , 指定设备</span><br><span class="hljs-deletion">--format , 指定格式</span><br><span class="hljs-deletion">--rate   , 指定采样率</span><br><span class="hljs-deletion">-c       , 指定声道数</span><br><span class="hljs-deletion">-t       , 指定输出格式</span><br><span class="hljs-deletion">-d       , 指定录制时长</span><br></code></pre></td></tr></table></figure>
+
+
+
+
                 
               </div>
             
@@ -294,6 +303,11 @@
           <div>July 22, 2023</div>
         </div>
       
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>August 2, 2023</div>
+        </div>
       
       
         <div class="license-meta-item">
@@ -435,10 +449,6 @@
 
   <footer>
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
   
   
     <div class="statistics">

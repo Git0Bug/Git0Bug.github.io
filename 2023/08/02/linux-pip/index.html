@@ -16,25 +16,26 @@
   <meta name="author" content="Luna">
   <meta name="keywords" content="">
   
-    <meta name="description" content="平时在Linux上开发，cmd命令用的挺不习惯">
+    <meta name="description" content="12345678pip install 包名 -i 源----源----中国科学技术大学: http:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;清华大学: https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;阿里云: https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;豆瓣: http:&#x2F;&#x2F;pypi.douban.c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows下的cmd命令">
-<meta property="og:url" content="https://git0bug.github.io/2023/07/22/win-cmd-operate/index.html">
+<meta property="og:title" content="pip换源">
+<meta property="og:url" content="https://git0bug.github.io/2023/08/02/linux-pip/index.html">
 <meta property="og:site_name" content="Luna&#39;s blog">
-<meta property="og:description" content="平时在Linux上开发，cmd命令用的挺不习惯">
+<meta property="og:description" content="12345678pip install 包名 -i 源----源----中国科学技术大学: http:&#x2F;&#x2F;pypi.mirrors.ustc.edu.cn&#x2F;simple&#x2F;清华大学: https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;阿里云: https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;豆瓣: http:&#x2F;&#x2F;pypi.douban.c">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-22T07:18:29.000Z">
-<meta property="article:modified_time" content="2023-07-22T12:47:13.075Z">
+<meta property="article:published_time" content="2023-08-01T22:29:29.000Z">
+<meta property="article:modified_time" content="2023-08-01T22:39:39.395Z">
 <meta property="article:author" content="Luna">
-<meta property="article:tag" content="Windows">
-<meta property="article:tag" content="cmd">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="pip">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Windows下的cmd命令 - Luna&#39;s blog</title>
+  <title>pip换源 - Luna&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -176,7 +177,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Windows下的cmd命令"></span>
+            <span id="subtitle" data-typed-text="pip换源"></span>
           
         </div>
 
@@ -187,8 +188,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-22 15:18" pubdate>
-          July 22, 2023 pm
+        <time datetime="2023-08-02 06:29" pubdate>
+          August 2, 2023 am
         </time>
       </span>
     
@@ -199,7 +200,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          287 words
+          254 words
         
       </span>
     
@@ -247,24 +248,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Windows下的cmd命令</h1>
+            <h1 id="seo-header">pip换源</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="查看任务列表"><a href="#查看任务列表" class="headerlink" title="查看任务列表"></a>查看任务列表</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">tasklist</span><br></code></pre></td></tr></table></figure>
-<h2 id="kill-task"><a href="#kill-task" class="headerlink" title="kill task"></a>kill task</h2><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">taskkill /im <span class="hljs-number">1</span>.exe /f<br><br>`/im` 是 <span class="hljs-string">&quot;Image Name&quot;</span> 的缩写，表示要终止的进程的名称。<br>`/f`：这是一个可选参数，表示强制终止进程。<br></code></pre></td></tr></table></figure>
+                <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">pip install 包名 -i 源<br><br>----源----<br><br>中国科学技术大学: http:<span class="hljs-regexp">//</span>pypi.mirrors.ustc.edu.cn<span class="hljs-regexp">/simple/</span><br>清华大学: https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn<span class="hljs-regexp">/simple/</span><br>阿里云: https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/pypi/</span>simple/<br>豆瓣: http:<span class="hljs-regexp">//</span>pypi.douban.com<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure>
 
+<p>查看安装信息：</p>
+<p>pip show <package_name></p>
+<blockquote>
+<p>查看apt-install安装信息：dpkg -L  <package_name>  		</p>
+</blockquote>
+<p>查看安装列表：</p>
+<p>pip list</p>
 
-<h2 id="查看端口占用"><a href="#查看端口占用" class="headerlink" title="查看端口占用"></a>查看端口占用</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">netstat -ano</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="查找字符串"><a href="#查找字符串" class="headerlink" title="查找字符串"></a>查找字符串</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">|findstr “string”</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="查询目录：dir"><a href="#查询目录：dir" class="headerlink" title="查询目录：dir"></a>查询目录：dir</h2><figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs isbl">/<span class="hljs-variable">A</span> <br>显示具有指定属性的文件，又分<span class="hljs-function"><span class="hljs-title">H</span>(隐藏)、<span class="hljs-title">S</span>(系统)、<span class="hljs-title">D</span>(目录)、<span class="hljs-title">R</span>(只读)、<span class="hljs-title">A</span>(保存)</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="切换：cd"><a href="#切换：cd" class="headerlink" title="切换：cd"></a>切换：cd</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#从c盘切到d盘</span><br>d:<br>或<br><span class="hljs-built_in">cd</span> /d D:<br></code></pre></td></tr></table></figure>
-
-<h2 id="新增：md"><a href="#新增：md" class="headerlink" title="新增：md"></a>新增：md</h2><h2 id="删除：rd"><a href="#删除：rd" class="headerlink" title="删除：rd"></a>删除：rd</h2><h2 id="rename-重命名前-重命名后"><a href="#rename-重命名前-重命名后" class="headerlink" title="rename 重命名前 重命名后"></a>rename 重命名前 重命名后</h2><h2 id="移动：move"><a href="#移动：move" class="headerlink" title="移动：move"></a>移动：move</h2><h2 id="查看历史：doskey-history"><a href="#查看历史：doskey-history" class="headerlink" title="查看历史：doskey&#x2F;history"></a>查看历史：doskey&#x2F;history</h2>
                 
               </div>
             
@@ -276,9 +274,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
-        <a href="/tags/cmd/" class="print-no-link">#cmd</a>
+        <a href="/tags/pip/" class="print-no-link">#pip</a>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
       
     </div>
   
@@ -290,8 +290,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Windows下的cmd命令</div>
-      <div>https://git0bug.github.io/2023/07/22/win-cmd-operate/</div>
+      <div>pip换源</div>
+      <div>https://git0bug.github.io/2023/08/02/linux-pip/</div>
     </div>
     <div class="license-meta">
       
@@ -303,13 +303,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 22, 2023</div>
+          <div>August 2, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>July 22, 2023</div>
+          <div>August 2, 2023</div>
         </div>
       
       
@@ -340,9 +340,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/22/win-bios-operate/" title="U盘启动时，提示不是安全启动">
+                      <a href="/2023/08/02/linux-speed/" title="ip">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">U盘启动时，提示不是安全启动</span>
+                        <span class="hidden-mobile">ip</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -350,8 +350,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/22/nginx-operate/" title="nginx使用">
-                        <span class="hidden-mobile">nginx使用</span>
+                      <a href="/2023/07/25/qtquick-singleton/" title="QML注册单例的两种方式和c++注册单例给QML使用">
+                        <span class="hidden-mobile">QML注册单例的两种方式和c++注册单例给QML使用</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

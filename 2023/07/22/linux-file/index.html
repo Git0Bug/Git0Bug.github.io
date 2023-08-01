@@ -24,7 +24,7 @@
 <meta property="og:description" content="万物皆文件">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-22T10:51:29.000Z">
-<meta property="article:modified_time" content="2023-07-22T12:47:13.075Z">
+<meta property="article:modified_time" content="2023-08-01T21:50:32.704Z">
 <meta property="article:author" content="Luna">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -169,7 +169,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -198,7 +198,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          662 words
+          676 words
         
       </span>
     
@@ -209,7 +209,7 @@
         
         
         
-          6 mins
+          4 mins
         
       </span>
     
@@ -261,9 +261,11 @@
 
 <h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ada">查找文件内容:<br>grep -rn <span class="hljs-string">&quot;查找内容&quot;</span> 文件名			<span class="hljs-comment">--r递归 n显示行号 </span><br><br>-i：忽略大小写<br>-v：反向查找<br></code></pre></td></tr></table></figure>
 
-<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><h4 id="f"><a href="#f" class="headerlink" title="-f"></a>-f</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">打印日志：tail -f /<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/<span class="hljs-keyword">test</span>.<span class="hljs-keyword">log</span><br></code></pre></td></tr></table></figure>
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>-f  循环读取，如打印日志：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">tail -f /<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/<span class="hljs-keyword">test</span>.<span class="hljs-keyword">log</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="n"><a href="#n" class="headerlink" title="-n"></a>-n</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">打印最后500行：<span class="hljs-built_in">tail</span> -n 500 filename<br></code></pre></td></tr></table></figure>
+<p>-n 显示尾部内容，如打印最后500行：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tail</span> -n <span class="hljs-number">500</span> filename<br></code></pre></td></tr></table></figure>
 
 <h3 id="chmod-修改读写执行权限"><a href="#chmod-修改读写执行权限" class="headerlink" title="chmod 修改读写执行权限"></a>chmod 修改读写执行权限</h3><pre><code class="hljs">r=4 w=2 x=1 
 
@@ -324,6 +326,11 @@ User	Group	Other	所有人
         </div>
       
       
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>August 2, 2023</div>
+        </div>
+      
       
         <div class="license-meta-item">
           <div>Licensed under</div>
@@ -352,9 +359,9 @@ User	Group	Other	所有人
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/22/linux-samba/" title="samba 共享文件夹">
+                      <a href="/2023/07/22/linux-samba/" title="共享存储">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">samba 共享文件夹</span>
+                        <span class="hidden-mobile">共享存储</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -464,10 +471,6 @@ User	Group	Other	所有人
 
   <footer>
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
   
   
     <div class="statistics">
