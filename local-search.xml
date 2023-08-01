@@ -4,9 +4,9 @@
   
   
   <entry>
-    <title>time dd 磁盘测速</title>
-    <link href="/2023/08/02/linux-ip/"/>
-    <url>/2023/08/02/linux-ip/</url>
+    <title>Linux 磁盘测速：time dd</title>
+    <link href="/2023/08/02/linux-speed/"/>
+    <url>/2023/08/02/linux-speed/</url>
     
     <content type="html"><![CDATA[<p>(time dd if&#x3D;&#x2F;dev&#x2F;zero of&#x3D;&#x2F;home&#x2F;test bs&#x3D;1M count&#x3D;1024) 2&gt;&amp;1</p><ul><li><p>time 用于计时，dd 用于复制，从if读出，写道of；</p></li><li><p>if 输入文件名，of 输出文件名；</p></li><li><p>if&#x3D;&#x2F;dev&#x2F;zero（产生字符）不产生IO，可用来测试纯写速度；</p></li><li><p>of&#x3D;&#x2F;dev&#x2F;null（回收站，无底洞）不产生IO，可用来测试纯读速度；</p></li><li><p>bs 每次读&#x2F;写的大小，即一个块的大小，count块数量；</p></li><li><p>2&gt;&amp;1  重定向标准错误输出到管道流；</p></li></ul>]]></content>
     
@@ -23,11 +23,11 @@
   
   
   <entry>
-    <title>ip</title>
-    <link href="/2023/08/02/linux-speed/"/>
-    <url>/2023/08/02/linux-speed/</url>
+    <title>Linux 网络配置</title>
+    <link href="/2023/08/02/linux-net/"/>
+    <url>/2023/08/02/linux-net/</url>
     
-    <content type="html"><![CDATA[<p>修改ip：(即时生效)</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># ifconfig eth0 192.168.40.248 netmask 255.255.255.0</span><br><span class="hljs-comment"># route add default gw 192.168.40.254</span><br></code></pre></td></tr></table></figure><p>禁用网卡：ifconfig 网卡名 down</p>]]></content>
+    <content type="html"><![CDATA[<p>修改ip：(即时生效)</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># ifconfig eth0 192.168.40.248 netmask 255.255.255.0</span><br><span class="hljs-comment"># route add default gw 192.168.40.254</span><br></code></pre></td></tr></table></figure><p>禁用网卡：ifconfig 网卡名 down</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ifconfig</span> eth0 down<br></code></pre></td></tr></table></figure><p>设置DNS服务器：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">vi <span class="hljs-regexp">/etc/</span>resolv.conf<br>nameserver <span class="hljs-number">8.8</span>.<span class="hljs-number">8.8</span>      <span class="hljs-regexp">//g</span>oogle服务器<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
@@ -155,7 +155,7 @@
   
   
   <entry>
-    <title>ubuntu avahi</title>
+    <title>Linux avahi</title>
     <link href="/2023/07/22/linux-avahi/"/>
     <url>/2023/07/22/linux-avahi/</url>
     
@@ -174,7 +174,7 @@
   
   
   <entry>
-    <title>Linux内核模块管理</title>
+    <title>Linux 内核模块管理</title>
     <link href="/2023/07/22/linux-mod/"/>
     <url>/2023/07/22/linux-mod/</url>
     
@@ -193,7 +193,7 @@
   
   
   <entry>
-    <title>ubuntu 检测声卡驱动</title>
+    <title>Linux 检测声卡驱动</title>
     <link href="/2023/07/22/linux-alsa/"/>
     <url>/2023/07/22/linux-alsa/</url>
     
@@ -214,7 +214,7 @@
   
   
   <entry>
-    <title>ubuntu 网卡限速和网卡测速</title>
+    <title>Linux 网卡限速和网卡测速</title>
     <link href="/2023/07/22/linux-wondershaper/"/>
     <url>/2023/07/22/linux-wondershaper/</url>
     
@@ -239,7 +239,7 @@
     <link href="/2023/07/22/linux-samba/"/>
     <url>/2023/07/22/linux-samba/</url>
     
-    <content type="html"><![CDATA[<h2 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1  安装"></a>1  安装</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo apt-get update<br>sudo apt-get install samba<br></code></pre></td></tr></table></figure><h3 id="2-指定账号的访问"><a href="#2-指定账号的访问" class="headerlink" title="2  指定账号的访问"></a>2  指定账号的访问</h3><p> 选择一个共享路径，假设为&#x2F;home&#x2F;work&#x2F;sharedir，不存在的情况下可以自己创建</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo mkdir -p /home/work/sharedir<br></code></pre></td></tr></table></figure><p>添加一个可访问用户到Ubuntu系统中，如smbuser，若存在则不需要创建</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo useradd smbuser -s /usr/sbin/nologin<br></code></pre></td></tr></table></figure><p>修改文件权限使得smbuser用户能够访问共享路径</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo chown smbuser:smbuser /home/work/sharedir<br></code></pre></td></tr></table></figure><p>将用户smbuser添加到samba的smbpasswd file中（即在samba服务中注册该账户）</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo smbpasswd -a smbuser<br>#后续设置登录密码，用于远程访问<br></code></pre></td></tr></table></figure><h3 id="3-修改samba配置文件（-etc-samba-smb-conf）"><a href="#3-修改samba配置文件（-etc-samba-smb-conf）" class="headerlink" title="3 修改samba配置文件（&#x2F;etc&#x2F;samba&#x2F;smb.conf）"></a>3 修改samba配置文件（&#x2F;etc&#x2F;samba&#x2F;smb.conf）</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs text"># 打开文件<br>sudo vim /etc/samba/smb.conf<br>#在文件尾部添加以下信息，并保存（vim中:wq保存）<br>   <br>[share]#共享目录名，访问时的展示名<br>   comment = share folder#该共享目录的描述<br>   browseable = yes#可浏览，是<br>   path = /home/work/sharedir  #访问的实际路径,前面设置的<br>   create mask = 0700<br>   directory mask = 0700<br>   valid users = smbuser#设置可访问的用户，此处为前面添加的用户smbuser<br>   force user = smbuser<br>   force group = smbuser<br>   public = yes<br>   available = yes<br>   writable = yes#可写，是<br></code></pre></td></tr></table></figure><h3 id="4-重启服务，使上述设置生效"><a href="#4-重启服务，使上述设置生效" class="headerlink" title="4 重启服务，使上述设置生效"></a>4 重启服务，使上述设置生效</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo service smbd restart<br>sudo service nmbd restart<br>#或者以下方法<br>sudo restart smbd<br>sudo restart nmbd<br></code></pre></td></tr></table></figure><h2 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h2><h3 id="在linux上访问windows共享文件夹："><a href="#在linux上访问windows共享文件夹：" class="headerlink" title="在linux上访问windows共享文件夹："></a>在linux上访问windows共享文件夹：</h3><ol><li><p>在windows上配置共享文件夹，假设设置user用户访问权限，密码为passwd；</p></li><li><p>在linux上输入命令后，访问挂载目录即可；</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo mount -t cifs <span class="hljs-regexp">//</span>&lt;windows_ip&gt;<span class="hljs-regexp">//</span>&lt;共享文件夹名&gt;  &lt;linux挂载目录&gt; -o username=<span class="hljs-string">&#x27;user&#x27;</span>,password=<span class="hljs-string">&quot;passwd&quot;</span><br></code></pre></td></tr></table></figure></li></ol><h3 id="linux之间互相访问"><a href="#linux之间互相访问" class="headerlink" title="linux之间互相访问"></a>linux之间互相访问</h3><p>格式：mount -t nfs -o nolock &lt;远程目录&gt; &lt;挂载目录&gt;</p>   <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">mount -t nfs -o nolock <span class="hljs-number">192.168</span>.<span class="hljs-number">0.1</span><span class="hljs-symbol">:/mnt/test</span>   /mnt<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1  安装"></a>1  安装</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo apt-get update<br>sudo apt-get install samba<br></code></pre></td></tr></table></figure><h3 id="2-指定账号的访问"><a href="#2-指定账号的访问" class="headerlink" title="2  指定账号的访问"></a>2  指定账号的访问</h3><p> 选择一个共享路径，假设为&#x2F;home&#x2F;work&#x2F;sharedir，不存在的情况下可以自己创建</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo mkdir -p /home/work/sharedir<br></code></pre></td></tr></table></figure><p>添加一个可访问用户到Linux系统中，如smbuser，若存在则不需要创建</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo useradd smbuser -s /usr/sbin/nologin<br></code></pre></td></tr></table></figure><p>修改文件权限使得smbuser用户能够访问共享路径</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo chown smbuser:smbuser /home/work/sharedir<br></code></pre></td></tr></table></figure><p>将用户smbuser添加到samba的smbpasswd file中（即在samba服务中注册该账户）</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo smbpasswd -a smbuser<br>#后续设置登录密码，用于远程访问<br></code></pre></td></tr></table></figure><h3 id="3-修改samba配置文件（-etc-samba-smb-conf）"><a href="#3-修改samba配置文件（-etc-samba-smb-conf）" class="headerlink" title="3 修改samba配置文件（&#x2F;etc&#x2F;samba&#x2F;smb.conf）"></a>3 修改samba配置文件（&#x2F;etc&#x2F;samba&#x2F;smb.conf）</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs text"># 打开文件<br>sudo vim /etc/samba/smb.conf<br>#在文件尾部添加以下信息，并保存（vim中:wq保存）<br>   <br>[share]#共享目录名，访问时的展示名<br>   comment = share folder#该共享目录的描述<br>   browseable = yes#可浏览，是<br>   path = /home/work/sharedir  #访问的实际路径,前面设置的<br>   create mask = 0700<br>   directory mask = 0700<br>   valid users = smbuser#设置可访问的用户，此处为前面添加的用户smbuser<br>   force user = smbuser<br>   force group = smbuser<br>   public = yes<br>   available = yes<br>   writable = yes#可写，是<br></code></pre></td></tr></table></figure><h3 id="4-重启服务，使上述设置生效"><a href="#4-重启服务，使上述设置生效" class="headerlink" title="4 重启服务，使上述设置生效"></a>4 重启服务，使上述设置生效</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">sudo service smbd restart<br>sudo service nmbd restart<br>#或者以下方法<br>sudo restart smbd<br>sudo restart nmbd<br></code></pre></td></tr></table></figure><h2 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h2><h3 id="在linux上访问windows共享文件夹："><a href="#在linux上访问windows共享文件夹：" class="headerlink" title="在linux上访问windows共享文件夹："></a>在linux上访问windows共享文件夹：</h3><ol><li><p>在windows上配置共享文件夹，假设设置user用户访问权限，密码为passwd；</p></li><li><p>在linux上输入命令后，访问挂载目录即可；</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo mount -t cifs <span class="hljs-regexp">//</span>&lt;windows_ip&gt;<span class="hljs-regexp">//</span>&lt;共享文件夹名&gt;  &lt;linux挂载目录&gt; -o username=<span class="hljs-string">&#x27;user&#x27;</span>,password=<span class="hljs-string">&quot;passwd&quot;</span><br></code></pre></td></tr></table></figure></li></ol><h3 id="linux之间互相访问"><a href="#linux之间互相访问" class="headerlink" title="linux之间互相访问"></a>linux之间互相访问</h3><p>格式：mount -t nfs -o nolock &lt;远程目录&gt; &lt;挂载目录&gt;</p>   <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">mount -t nfs -o nolock <span class="hljs-number">192.168</span>.<span class="hljs-number">0.1</span><span class="hljs-symbol">:/mnt/test</span>   /mnt<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
@@ -256,7 +256,7 @@
   
   
   <entry>
-    <title>Linux文件常用操作命令</title>
+    <title>Linux 文件常用操作命令</title>
     <link href="/2023/07/22/linux-file/"/>
     <url>/2023/07/22/linux-file/</url>
     
